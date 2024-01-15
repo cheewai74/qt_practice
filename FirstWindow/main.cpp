@@ -1,9 +1,10 @@
 #include <QApplication>
-// #include <QPushButton>
-// #include "win_test.h"
+#include <QPushButton>
+#include "win_test.h"
 
 #include <QProgressBar>
 #include <QSlider>
+#include "custom.h"
 
 int main(int argc, char **argv){
     QApplication app(argc, argv);
@@ -32,6 +33,16 @@ int main(int argc, char **argv){
     // win_test window; // --  #include "win_test.h" --
     // window.show();
 
+    // QWidget win;
+    // win.setFixedSize(100, 50);
+
+    // QPushButton *button = new QPushButton("Hello World", &win);
+    // button->setGeometry(10,10,80,30);
+    // win.show();
+    // custom win; // --  #include "custom.h" --
+    // win.show();
+
+
     ///
     /// --------- Example -----
     /// #include <QProgressBar>
@@ -40,7 +51,7 @@ int main(int argc, char **argv){
 
     // Create a container window
     QWidget window;
-    window.setFixedSize(200, 80);
+    window.setFixedSize(400, 160);
 
     // Create a progress bar
     // with the range between 0 and 100, and a starting value of 0
@@ -49,7 +60,7 @@ int main(int argc, char **argv){
     progressBar->setValue(0);
     progressBar->setGeometry(10,10,180,30);
 
-    // Create a horizontal slider
+    // Create a horizontal slider ------
     // with the range between 0 and 100, anda starting value of 0
     QSlider *slider = new QSlider(&window);
     slider->setOrientation(Qt::Horizontal);
@@ -57,13 +68,23 @@ int main(int argc, char **argv){
     slider->setValue(0);
     slider->setGeometry(0, 40, 180, 30);
 
+    QPushButton *buttonInfo = new QPushButton("Info", &window);
+    buttonInfo->setGeometry(100,100,80,30);
+
+    QPushButton *buttonQuit = new QPushButton("Quit", &window);
+    buttonQuit->setGeometry(210,100,80,30);
+
     window.show();
 
     // Connection
     // This connection set the value of the progressbar
     // while the slider's value changes.
 
+
+
     QObject::connect(slider, SIGNAL(valueChanged(int)), progressBar, SLOT(setValue(int)));
+
+
 
     return app.exec();
 }
